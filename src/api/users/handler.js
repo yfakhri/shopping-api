@@ -27,7 +27,7 @@ class UsersHandler {
 
     this.signUpUserHandler = this.signUpUserHandler.bind(this);
     this.signInUserHandler = this.signInUserHandler.bind(this);
-   // this.getAllUsers = this.getAllUsers(this);
+    this.getAllUsers = this.getAllUsers.bind(this);
   }
 
   async signUpUserHandler(request, h) {
@@ -64,19 +64,19 @@ class UsersHandler {
       return handleError(error, h);
     }
   }
-/*
   async getAllUsers(request, h){
     try{
         const users = await this._service.getUsers();
-        response = h.response({
-            users
+        const response = h.response({
+            users:users
         })
+        return response
 
     }catch (error) {
         return handleError(error, h);
     }
   }
-  */
+  
 }
 
 module.exports = UsersHandler;
