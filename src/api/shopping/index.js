@@ -1,4 +1,4 @@
-const UsersHandler = require('./handler');
+const ShoppingHandler = require('./handler');
 const routes = require('./routes');
 
 module.exports = {

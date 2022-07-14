@@ -10,8 +10,13 @@ const UsersService = require('./services/postgres/UsersService');
 //token
 const TokenManager = require('./tokenize/TokenManager');
 
+//shopping
+const shopping = require('./api/shopping');
+const ShoppingService = require('./services/postgres/ShoppingService')
+
 const init = async () => {
   const usersService = new UsersService();
+  const shoppingService = new ShoppingService();
 
 
   const server = Hapi.server({
@@ -52,6 +57,12 @@ const init = async () => {
       options: {
         service: usersService,
         tokenManager: TokenManager,
+      },
+    },
+    {
+      plugin: shopping,
+      options: {
+        service: shoppingService,
       },
     },
   ]);

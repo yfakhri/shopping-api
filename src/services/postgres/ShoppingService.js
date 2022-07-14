@@ -1,7 +1,6 @@
 const { Pool } = require('pg');
 const InvariantError = require('../../exceptions/InvariantError');
 const NotFoundError = require('../../exceptions/NotFoundError');
-const AuthenticationError = require('../../exceptions/AuthenticationError');
 
 class ShoppingService {
   constructor() {
@@ -12,8 +11,8 @@ class ShoppingService {
     
 
     const query = {
-      text: 'INSERT INTO shopping (name, createddate) VALUES($1, $2 ) RETURNING id, createddate, name',
-      values: [createddate,name],
+      text: 'INSERT INTO shopping (name, createddate) VALUES($1, $2) RETURNING id, createddate, name',
+      values: [name,createddate],
     };
 
     const result = await this._pool.query(query);
@@ -66,9 +65,5 @@ class ShoppingService {
     }
   }
 
-  async getShopping() {
-    const result = await this._pool.query('SELECT * FROM shopping');
-    return result.rows;
-  }
 }
-module.exports = Shopping;
+module.exports = ShoppingService;
